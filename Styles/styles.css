@@ -1,0 +1,36 @@
+html, body {
+    margin: 0;
+    padding: 0;
+  }
+
+  *{
+    box-sizing: border-box;
+  }
+
+
+.container{
+    height: 100vh;
+    display: flex;
+    flex-direction:column;
+    justify-content: center;
+
+}
+.row{
+    display: flex;
+    align-items:center;
+    justify-content: space-around;
+}
+
+.header{
+    text-align: center;
+}
+
+.widget:hover{
+    width: 275px;
+    height: 275px;
+    margin: 0 10px;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+}
+
+
