@@ -86,6 +86,9 @@ paper.addEventListener('click', () => {
 
 const scissor = document.getElementById('scissors')
 scissor.addEventListener('click', () => {
-    playerChoice = "scissors";
-    roundResults();
+    console.log("You choose scissor")
+    console.log("Computer choose", computerMove());
+
 })
+
+//Testing commit
