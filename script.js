@@ -90,5 +90,3 @@ scissor.addEventListener('click', () => {
     console.log("Computer choose", computerMove());
 
 })
-
-//Testing commit
