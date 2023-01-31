@@ -5,19 +5,21 @@
 //Best of 3 wins the whole game (Will require a loop)
 let playerScore = 0;
 let computerScore = 0;
+let round = 0;
 
+//Function that determines the move of the computer
 function getComputerMove() {
     let computerMove;
-    let randomNum = Math.floor(Math.random() * 3);
+    let randomNum = Math.ceil(Math.random() * 3);
   
     switch (randomNum) {
-      case 0:
+      case 1:
         computerMove = "rock";
         break;
-      case 1:
+      case 2:
         computerMove = "paper";
         break;
-      case 2:
+      case 3:
         computerMove = "scissors";
         break;
     }
@@ -25,68 +27,77 @@ function getComputerMove() {
     return computerMove;
   }
 
+
+//Function that defines the winner of every roundc
 function roundResults(){
-    const results = [
-        { player: "rock", computer: "scissors", outcome: "player" },
-        { player: "rock", computer: "paper", outcome: "computer" },
-        { player: "paper", computer: "rock", outcome: "player" },
-        { player: "paper", computer: "scissors", outcome: "computer" },
-        { player: "scissors", computer: "rock", outcome: "computer" },
-        { player: "scissors", computer: "paper", outcome: "player" },
-      ];
-      
-      const match = results.find(
-        (result) => result.player === playerChoice && result.computer === getComputerMove());
-      
-      if (match) {
-        if (match.outcome === "player") {
-          playerScore++;
-          console.log("Player won");
-        } else if (match.outcome === "computer") {
-          computerScore++;
-          console.log("Computer won");
-        } else {
-          console.log("Match ended in a tie");
-        }
-      }
-      return match.outcome;
+  const results = [
+    { player: "rock", computer: "scissors", outcome: "player" },
+    { player: "rock", computer: "paper", outcome: "computer" },
+    { player: "paper", computer: "rock", outcome: "player" },
+    { player: "paper", computer: "scissors", outcome: "computer" },
+    { player: "scissors", computer: "rock", outcome: "computer" },
+    { player: "scissors", computer: "paper", outcome: "player" },
+    { player: "paper", computer: "paper", outcome: "tie" },
+    { player: "scissors", computer: "scissors", outcome: "tie" },
+    { player: "rock", computer: "rock", outcome: "tie" },
+  ];
+
+  const match = results.find(
+    (result) => result.player === playerChoice && result.computer === computerChoice
+  );
+  
+  if (match) {
+    if (match.outcome === "player") {
+      playerScore++;
+      console.log("Player Won");
+    } else if (match.outcome === "computer") {
+      computerScore++;
+      console.log("Computer Won");
+    } else {
+      console.log("It's a tie");
+    }
   }
+}
 
 
-// while (playerScore < 2 && computerScore < 2) {
-//     // Get player choice and computer choice
-  
-//     // Determine the winner
-  
-//     if (match.outcome === "player") {
-//       playerScore++;
-//     } else if (match.outcome === "computer") {
-//       computerScore++;
-//     }
-//   }
-  
-//   if (playerScore === 2) {
-//     // player wins the match
-//   } else {
-//     // computer wins the match
-//   }
-  
+//Defining Function for updating the score Live
+function updateScore() {
+  document.getElementById("playerScore").innerHTML = `Player Score: ${playerScore} `;
+  document.getElementById("computerScore").innerHTML = `Computer Score: ${computerScore}`;
+}
 
+  
+//Defining the Player Moves
 const rock = document.getElementById('rock')
+const paper = document.getElementById('paper')
+const scissor = document.getElementById('scissors')
+
+
+
 rock.addEventListener('click', () => {
     playerChoice = "rock";
+    computerChoice = getComputerMove();
     roundResults();
+    updateScore();
 })
 
-const paper = document.getElementById('paper')
 paper.addEventListener('click', () => {
     playerChoice = "paper";
+    computerChoice = getComputerMove();
     roundResults();
+    updateScore();
 })
 
-const scissor = document.getElementById('scissors')
 scissor.addEventListener('click', () => {
-    console.log("You choose scissor")
-    console.log("Computer choose", computerMove());
-
+    playerChoice = "scissors"
+    computerChoice = getComputerMove();
+    roundResults();
+    updateScore();
 })
+
+
+
+
+  
+
+
